@@ -27,7 +27,8 @@ CREATE TABLE speakers(
      id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
      name VARCHAR (255),
      topic VARCHAR (255),
-     title VARCHAR (255)
+     title VARCHAR (255), 
+     code INT
 );
 
 CREATE TABLE attendance(
