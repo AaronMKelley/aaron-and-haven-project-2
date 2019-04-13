@@ -1,0 +1,21 @@
+.company_color {
+    background-color: #9707FF !important;
+}
+
+.company_text_color{
+    color: #9707FF !important;
+}
+
+#background_image_1{
+    background-image:url("convention01.jpg") !important;
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+}
+
+#background_image_2{
+    background-image:url("convention02.png") !important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+}
