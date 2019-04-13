@@ -1,8 +1,20 @@
 .company_color {
     background-color: #9707FF !important;
 }
+#company_color {
+    background-color: #9707FF !important;
+}
 
-.company_text_color{
+#main_page{
+    background-color: #26A69A;
+}
+
+
+#sign-in{
+    background-color: #9707FF !important;
+}
+
+.company_text_color {
     color: #9707FF !important;
 }
 

@@ -2,12 +2,17 @@ var mysql = require("mysql");
 var express = require("express");
 var bcrypt = require("bcryptjs");
 var app = express();
+var methodOverride = require('method-override')
 
 var session = require("express-session");
 var cookieParser = require("cookie-parser");
 
 app.use(session({ secret: "app", cookie: { maxAge: 1*1000*60*60*24*365 }}));
 app.use(cookieParser());
+
+app.use(methodOverride('_method'))
+
+app.use(express.static("public"));
 
 // Initializes the connection variable to sync with conventions_db
 var connection = mysql.createConnection({
@@ -20,18 +25,42 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-app.get('/attendees',function(req,res){
-    connection.query('SELECT * FROM animals',function(error,results,fields){
+app.get('/add_event.html',function(req,res){
+    connection.query('SELECT * FROM attendees',function(error,results,fields){
         if (error) res.send(error)
-        else res.json(results)
+        else res.send('hi')
     })
 });
 
-app.post('/attendees',function (req,res){
-    connection.query('INSERT INTO attendees (name,email,company,DEFAULT(picked_up_swag),DEFAULT(picked_up_lunch),user_id,DEFAULT(ts)) VALUES (?)',[req.body.name],function(error,results,fields){
+app.post('/add_event.html',function (req,res){
+    connection.query('INSERT INTO attendees (name,email,company,DEFAULT(picked_up_swag),DEFAULT(picked_up_lunch),user_id,DEFAULT(ts)) VALUES (?)',[req.body.attendee_name],[req.body.attendee_email],[req.body.attendee_company],function(error,results,fields){
         if (error) res.send(error)
         else res.redirect('/')
     })
+});
+
+
+app.get('/speaker_sign_up.html',function(req,res){
+    connection.query('SELECT * FROM speakers',function(error,results,fields){
+        if(error) res.send(error)
+        else res.send('hi')
+    })
+});
+
+app.post('/speaker_sign_up.html',function(req,res){
+    connection.query('INSERT INTO speakers (name,topic,title,code) VALUES (?)',
+    [req.body.name],[req.body.topic],[req.body.title],[req.body.code],
+    function(error,results,fields){
+        if (error) res.send(error)
+        else res.redirect('/')
+    })
+});
+
+
+
+
+app.get('*', function(req, res){
+	res.redirect('/')
 });
 
 
@@ -49,7 +78,7 @@ app.get("/signup/:email/:password/:admin", function(req, res){
 	bcrypt.genSalt(10, function(err, salt) {
 		
 		bcrypt.hash(req.params.password, salt, function(err, p_hash) {
-			connection.query("INSERT INTO users (email, password_hash, admin) VALUES (?, ?)", [req.params.email, p_hash, is_admin], function (error, results, fields) {
+			connection.query("INSERT INTO users (email, password_hash, admin) VALUES (?, ?, ?)", [req.params.email, p_hash, is_admin], function (error, results, fields) {
 				if (error) throw error;
 
 				if(results.length == 0) {
@@ -60,9 +89,9 @@ app.get("/signup/:email/:password/:admin", function(req, res){
 							req.session.user_id = results[0].id;
 							req.session.email = results[0].email;
 
-							res.send("you are logged in");
+							res.redirect("/add_event");
 						} else {
-							res.redirect("/");
+							res.send("failed");
 						}
 					});
 				}
