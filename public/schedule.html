@@ -1,54 +1,61 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="assets/CSS/materialize/css/materialize.css"  media="screen,projection"/>
-      <link rel="stylesheet" type="text/css" href="Assets/CSS/style.css">
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+<html>
 
-    <body>
-  
-      <nav class="company_color" role="navigation">
-            <div class="nav-wrapper container" id="header">
-              <img src="assets/Images/Screen Shot 2019-04-11 at 8.11.42 PM.png" alt="Logo" width="180px">
-              <ul class="right hide-on-med-and-down">
-                <li><a href="sign-up.html">Sign-Up</a></li>
-                <li><a href="login.html">Log-In</a></li>
-              </ul>
-        <ul id="nav-mobile" class="sidenav">
-                  <li><a href="">Sign-Up</a></li>
-                  <li><a href="login.html">Log-In</a></li>
-                </ul>
-                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-              </div>
-            </nav>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="assets/CSS/materialize/css/materialize.css" media="screen,projection" />
+  <link rel="stylesheet" type="text/css" href="Assets/CSS/style.css">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
 
-      
-      <div id="schedule_table"></div>
-      
-      
-      <footer class="company_color">
-               
-                <div class="">
-               <p class="center-align white-text" > X-CON All Rights Reserved </p> 
-                </div>
-              </div>
-            </footer>
+<body>
+
+  <nav class="company_color" role="navigation">
+    <div class="nav-wrapper container" id="header">
+      <img src="assets/Images/Screen Shot 2019-04-11 at 8.11.42 PM.png" alt="Logo" width="180px">
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sign-up.html">Sign-Up</a></li>
+        <li><a href="login.html">Log-In</a></li>
+      </ul>
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="">Sign-Up</a></li>
+        <li><a href="login.html">Log-In</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
 
 
+  <div id="schedule_table">
+    <!-- <form action="/delete_speaker?_method=DELETE" method="POST">
+      <button>Delete Speaker</button>
+    </form> -->
+  </div>
 
-      <!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="Assets/JS/js/materialize.js"></script>
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+
+  <footer class="company_color">
+
+    <div class="">
+      <p class="center-align white-text"> X-CON All Rights Reserved </p>
+    </div>
+    </div>
+  </footer>
+
+
+
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="Assets/JS/js/materialize.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="Assets/JS/js/schedule_select.js"></script>
-      <script type="text/javascript">
-      getSchedule();
-      </script>
-    </body>
-  </html>
+  <script type="text/javascript" src="Assets/JS/js/speaker_delete.js"></script>
+
+  <script type="text/javascript">
+    getSchedule();
+  </script>
+</body>
+
+</html>
