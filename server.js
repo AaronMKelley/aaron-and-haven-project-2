@@ -74,46 +74,62 @@ app.post('/speaker_sign_up',function(req,res){
 
 
 
-app.get('*', function(req, res){
-	res.redirect('/')
-});
+// app.get('*', function(req, res){
+// 	res.redirect('/')
+// });
 
 
-app.get("/", function(req, res) {
-	res.render();
-	// render landing page
-});
+// app.get("/", function(req, res) {
+// 	res.render();
+// 	// render landing page
+// });
 
-app.get("/signup/:email/:password/:admin", function(req, res){
-	if (req.params.admin == "true") {
-		var is_admin = true;
+app.post("/signup", function(req, res){
+	if(req.body.user_admin == "true") {
+		admin_status = 1;
 	} else {
-		var is_admin = false;
+		admin_status = 0;
 	}
+
 	bcrypt.genSalt(10, function(err, salt) {
 		
-		bcrypt.hash(req.params.password, salt, function(err, p_hash) {
-			connection.query("INSERT INTO users (email, password_hash, admin) VALUES (?, ?, ?)", [req.params.email, p_hash, is_admin], function (error, results, fields) {
+		bcrypt.hash(req.body.user_password, salt, function(err, p_hash) {
+			var query = connection.query("INSERT INTO users (email, password_hash, admin) VALUES (?, ?, ?)", [req.body.user_email, p_hash, admin_status], function (error, results, fields) {
+				// console.log(query.sql)
 				if (error) throw error;
-
-				if(results.length == 0) {
-					res.send("Please enter a valid email address");
-				} else {
-					bcrypt.compare(req.params.password, results[0].password_hash, function(err, result) {
-						if (result == true) {
-							req.session.user_id = results[0].id;
-							req.session.email = results[0].email;
-
-							res.redirect("/add_event");
-						} else {
-							res.send("failed");
-						}
-					});
-				}
+				res.redirect("/add_event.html");
 			});			
 		});
 	});
 });
+
+app.get("/signin", function(req, res) {
+	// res.send('hi')
+	connection.query('SELECT * FROM users WHERE email = ?', [req.query.user_email],function (error, results, fields) {
+		// res.json(results);
+	  if (error) throw error;
+
+	  console.log("hello");
+	  
+	  if (results.length == 0){
+	  	res.send('try again');
+	  }else {
+	  	bcrypt.compare(req.body.user_password, results[0].password_hash, function(err, result) {
+	  	    
+	  	    if (result == true){
+
+	  	      req.session.user_id = results[0].id;
+	  	      req.session.email = results[0].email;
+
+	  	      res.send('you are logged in');
+
+	  	    }else{
+	  	      res.redirect('/add_event.html');
+	  	    }
+	  	});
+	  }
+	});
+})
 
 app.get("/logout", function(req, res) {
 	req.session.destroy(function(err) {
