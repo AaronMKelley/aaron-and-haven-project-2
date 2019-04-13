@@ -12,7 +12,7 @@ app.use(methodOverride('_method'))
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(session({ secret: "app", cookie: { maxAge: 1*1000*60*60*24*365 }}));
+app.use(session({ secret: "app", cookie: { maxAge: 1 * 1000 * 60 * 60 * 24 * 365 } }));
 // Initializes the connection variable to sync with conventions_db
 var connection = mysql.createConnection({
 	host: "localhost",
@@ -22,32 +22,32 @@ var connection = mysql.createConnection({
 	database: "conventions_db"
 });
 
-connection.connect(function(){
+connection.connect(function () {
 	console.log(connection.threadId)
 })
 
-app.get('/attendees',function(req,res){
-    connection.query('SELECT * FROM attendees',function(error,results,fields){
-        if(error) res.send(error)
-        else res.json(results)
-    })
+app.get('/attendees', function (req, res) {
+	connection.query('SELECT * FROM attendees', function (error, results, fields) {
+		if (error) res.send(error)
+		else res.json(results)
+	})
 });
 
-app.get('/speakers',function(req,res){
-    connection.query('SELECT * FROM speakers',function(error,results,fields){
-        if(error) res.send(error)
-        else res.json(results)
-    })
+app.get('/speakers', function (req, res) {
+	connection.query('SELECT * FROM speakers', function (error, results, fields) {
+		if (error) res.send(error)
+		else res.json(results)
+	})
 });
 
-app.post('/add_event',function (req,res){
-    connection.query('INSERT INTO attendees SET ?',[req.body],function(error,results,fields){
-        if (error) res.send(error)
-        else res.redirect('/')
-    })
+app.post('/add_event', function (req, res) {
+	connection.query('INSERT INTO attendees SET ?', [req.body], function (error, results, fields) {
+		if (error) res.send(error)
+		else res.redirect('/schedule.html')
+	})
 });
 
-app.post('/speaker_sign_up',function(req,res){
+app.post('/speaker_sign_up', function (req, res) {
 	console.log(req.body)
 	/*
 	{ speaker_name: 'Aaron',
@@ -55,18 +55,31 @@ app.post('/speaker_sign_up',function(req,res){
   speaker_title: 'Vampires After Dark',
   speaker_code: '12345' }
 	*/
-    var query = connection.query('INSERT INTO speakers SET ?',
-    [req.body],
-    function(error,results,fields){
-		console.log(query.sql)
-        if (error) {
-			res.send(error)
-			console.log(error)
-		}
-        else res.send('worked')
-	})
+	var query = connection.query('INSERT INTO speakers SET ?',
+		[req.body],
+		function (error, results, fields) {
+			console.log(query.sql)
+			if (error) {
+				res.send(error)
+				console.log(error)
+			}
+			else res.send('worked')
+		})
 	//res.send('ok')
 });
+
+// app.delete('/delete_speaker',function (req, res){
+// 	('DELETE FROM speakers WHERE id = ?',
+// 	[req.body],
+// 	function(error, results, fields){
+// 		console.log(query.sql)
+// 		if (error){
+// 			res.send(error)
+// 		}
+// 		else res.send('worked')
+// 	})
+// });
+
 
 
 
@@ -91,6 +104,9 @@ app.post("/signup", function(req, res){
 		admin_status = 0;
 	}
 
+	
+
+
 	bcrypt.genSalt(10, function(err, salt) {
 		
 		bcrypt.hash(req.body.user_password, salt, function(err, p_hash) {
@@ -99,6 +115,7 @@ app.post("/signup", function(req, res){
 				if (error) throw error;
 				res.redirect("/add_event.html");
 			});			
+
 		});
 	});
 });
@@ -137,6 +154,6 @@ app.get("/logout", function(req, res) {
 	});
 });
 
-app.listen(3000, function(){
+app.listen(3000, function () {
 	console.log("listening on 3000");
 });
