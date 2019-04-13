@@ -17,9 +17,9 @@ CREATE TABLE attendees (
     company VARCHAR (255),
     picked_up_swag BOOLEAN DEFAULT false,
     picked_up_lunch BOOLEAN DEFAULT false,
-    user_id INT NOT NULL,
-    ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users (id)
+    /*user_id INT NOT NULL, */
+    ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    /* FOREIGN KEY (user_id) REFERENCES users (id) */
 );
 
 
