@@ -23,12 +23,14 @@ $(document).on('click', 'input[type="checkbox"]',(function(e) {
 		checked : $(this).is(":checked")}
 	}).then(function(message){
 		console.log(message)
-	});
-	// console.log( $(this).is(":checked") )  
-	// console.log( $(this).attr("data-id") )  
+    	});
 	console.log( $(this).is(":checked") )  
 	console.log( $(this).attr("data-id") )  
-	
+}
+=======
+	});
+	console.log( $(this).is(":checked") )  
+	console.log( $(this).attr("data-id") )  
 }
 
 }));

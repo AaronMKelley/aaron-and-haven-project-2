@@ -13,6 +13,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({ secret: "app", cookie: { maxAge: 1 * 1000 * 60 * 60 * 24 * 365 } }));
+app.set('view engine', 'ejs');
 // Initializes the connection variable to sync with conventions_db
 var connection = mysql.createConnection({
 	host: "localhost",
@@ -30,6 +31,13 @@ app.get('/attendees', function (req, res) {
 	connection.query('SELECT * FROM attendees', function (error, results, fields) {
 		if (error) res.send(error)
 		else res.json(results)
+	})
+});
+
+app.get('/ejs', function (req, res) {
+	connection.query('SELECT * FROM attendees', function (error, results, fields) {
+		if (error) res.send(error)
+		else res.render('pages/index', {attendees: results})
 	})
 });
 
