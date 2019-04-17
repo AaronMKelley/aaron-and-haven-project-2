@@ -18,7 +18,7 @@ function getAttendees(){
 
             var name_head=$('<th>')
             name_head.text("Name")
-            headers.append(id_head);
+            headers.append(name_head);
 
             var email_head =$('<th>')
             email_head.text("Email")
@@ -90,7 +90,7 @@ function getAttendees(){
 
             $('#attendees_table').append(headers);
           
-            headers.append(c)
+            $('#attendees_table').append(c)
 
             // var swag = $('<button>');
             // swag.attr('class', 'attendee_swag')
