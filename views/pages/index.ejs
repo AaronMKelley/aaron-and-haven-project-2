@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include ../partials/head %>
+<body>
+    <ul>
+    <% attendees.forEach(function(attendee) { %>
+        <li><%= attendee.id %> - <%= attendee.name %></li>
+    <% }); %>
+</ul>
+</body>
+</html>

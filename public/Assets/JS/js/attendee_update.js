@@ -14,7 +14,7 @@ $('#update_swag').submit(function(e) {
 	}).then(function(message){
 		console.log(message)
 		getAttendees();
-	});
+	});	
 
 });
 
