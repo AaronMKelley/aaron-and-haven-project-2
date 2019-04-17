@@ -33,12 +33,48 @@ app.get('/attendees', function (req, res) {
 	})
 });
 
+app.delete('/attendee-delete', function(req, res){
+	connection.query('DELETE FROM attendees WHERE id = (?)', [req.body.attendees_id],function (error, results, fields) {
+	  
+	//   res.redirect('/');
+	res.redirect('/')
+	
+	});
+});
+
+app.put('/swag-update/:id', function(req, res){
+	connection.query('UPDATE attendees SET picked_up_swag = (?) WHERE id = (?)', [req.body.picked_up_swag, req.params.id],function (error, results, fields) {
+		
+	//   res.redirect('/');
+	res.json({message:'ok'})
+	
+	});
+});
+
+app.get('/users', function (req, res){
+	connection.query('SELECT * FROM users', function (error,results,fields){
+		if (error) res.send(error)
+		else res.json(results)
+	})
+})
+
 app.get('/speakers', function (req, res) {
 	connection.query('SELECT * FROM speakers', function (error, results, fields) {
 		if (error) res.send(error)
 		else res.json(results)
 	})
 });
+
+app.delete('/speaker-delete', function(req, res){
+	connection.query('DELETE FROM speakers WHERE id = (?)', [req.body.speakers_id],function (error, results, fields) {
+	  
+	//   res.redirect('/');
+	res.redirect('/')
+	
+	});
+});
+
+
 
 app.post('/add_event', function (req, res) {
 	connection.query('INSERT INTO attendees SET ?', [req.body], function (error, results, fields) {
