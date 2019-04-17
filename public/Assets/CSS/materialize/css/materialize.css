@@ -9084,3 +9084,48 @@ input[type=range]::-ms-thumb {
     margin-top: 1.2rem;
   }
 }
+
+
+/* Addded CSS */
+
+.company_color {
+  background-color: #9707FF !important;
+}
+#company_color {
+  background-color: #9707FF !important;
+}
+
+#main_page{
+  background-color:  palegreen;
+}
+
+
+#sign-in{
+  background-color: #9707FF !important;
+}
+
+.company_text_color {
+  color: #9707FF !important;
+}
+
+#background_image_1{
+  background-image:url("convention01.jpg") !important;
+  background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center; 
+}
+
+#background_image_2{
+  background-image:url("convention02.png") !important;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+body{
+  font-family: 'Fjalla One', sans-serif !important ;
+}
