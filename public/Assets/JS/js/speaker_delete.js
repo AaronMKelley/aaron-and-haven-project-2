@@ -7,6 +7,7 @@ $(document).on('click', '.speaker_delete', function(e) {
 		method: 'DELETE',
 		data: {speakers_id : $(this).attr('data-id')}
 	}).then(function(message){
+		res.redirect('/')
 		getSchedule();
 	});
 
