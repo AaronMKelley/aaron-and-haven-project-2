@@ -8,8 +8,7 @@ function getAttendees(){
         url: '/attendees',
         method: 'GET'
     }).then(function (attendees) {
-        for (var attendeesIndex in attendees) {
-
+       
             var headers = $('<tr>')
 
             var id_head= $('<th>')
@@ -40,8 +39,9 @@ function getAttendees(){
             timestamp_head.text("Timestamp")
             headers.append(timestamp_head);
 
-           
-            
+            $('#attendees_table').append(headers);
+
+    for (var attendeesIndex in attendees) {
             var c = $('<tr>');
 
             var a_id= $('<td>')
@@ -61,12 +61,22 @@ function getAttendees(){
             c.append(a_company);
 
             var a_swag =$('<td>')
+            var dropdown1 =`<label>
+            <input type="checkbox" data-name="swag" data-id="${attendees[attendeesIndex].id}"  ${ (attendees[attendeesIndex].picked_up_swag)?'checked="checked"':''}/>
+            <span>Yes</span></label>`
             a_swag.text(`${attendees[attendeesIndex].picked_up_swag}`)
+            a_swag.html(dropdown1)
             c.append(a_swag);
 
             var a_lunch =$('<td>')
+            var dropdown2 =`<label>
+            <input type="checkbox" data-name="lunch" data-id="${attendees[attendeesIndex].id}" ${(attendees[attendeesIndex].picked_up_lunch)?'checked=checked"':''}/>
+            <span>Yes</span></label>`
             a_lunch.text(`${attendees[attendeesIndex].picked_up_lunch}`)
+            a_lunch.html(dropdown2)
             c.append(a_lunch)
+        
+    
             
             var a_ts =$('<td>')
             a_ts.text( `${attendees[attendeesIndex].ts}`)
@@ -74,9 +84,6 @@ function getAttendees(){
             
             console.log(c)
         
-    //         p.text(`${attendees[attendeesIndex].id}, ${attendees[attendeesIndex].name} ${attendees[attendeesIndex].email},
-    // ${attendees[attendeesIndex].company}, ${attendees[attendeesIndex].picked_up_swag}, 
-    // ${attendees[attendeesIndex].picked_up_lunch}, ${attendees[attendeesIndex].ts},`)
 
             var bt = $('<button>');
             bt.attr('class', 'attendee_delete')
@@ -88,7 +95,7 @@ function getAttendees(){
 
            
 
-            $('#attendees_table').append(headers);
+           
           
             $('#attendees_table').append(c)
 

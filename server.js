@@ -42,13 +42,20 @@ app.delete('/attendee-delete', function(req, res){
 	});
 });
 
-app.put('/swag-update/:id', function(req, res){
-	connection.query('UPDATE attendees SET picked_up_swag = (?) WHERE id = (?)', [req.body.picked_up_swag, req.params.id],function (error, results, fields) {
+app.put('/swag-update/', function(req, res){
+	console.log(req.body)
+	connection.query('UPDATE attendees SET picked_up_swag = ? WHERE id = ?', [(req.body.checked=='true'), req.body.userid],function (error, results, fields) {
 		
 	//   res.redirect('/');
 	res.json({message:'ok'})
 	
 	});
+});
+
+app.put('/lunch-update', function(req, res){
+	connection.query('UPDATE attendees SET picked_up_lunch = ? WHERE id= ?', [req.body.checked=="true", req.body.userid],function(error,results,fields){
+		res.json({message: 'done'})
+	})
 });
 
 app.get('/users', function (req, res){
@@ -99,7 +106,7 @@ app.post('/speaker_sign_up', function (req, res) {
 				res.send(error)
 				console.log(error)
 			}
-			else res.send('worked')
+			else res.redirect('/schedule.html')
 		})
 	//res.send('ok')
 });
