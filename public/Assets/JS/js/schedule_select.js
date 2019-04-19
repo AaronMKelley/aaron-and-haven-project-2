@@ -1,6 +1,7 @@
-function getSchedule() {
+function getSchedule(admin_status) {
 
     // $('#speaker')
+    debugger;
 
     $.ajax({
         url: '/speakers',
@@ -56,7 +57,7 @@ for (var speakersIndex in speakers) {
 
             var s_code =$('<td>')
             s_code.text(`${speakers[speakersIndex].code}`)
-            c.append(s_code)
+            if (admin_status == "true") c.append(s_code)
             // var a_swag =$('<td>')
             // var dropdown1 =`<label>
             // <input type="checkbox" data-name="swag" data-id="${attendees[attendeesIndex].id}"  ${ (attendees[attendeesIndex].picked_up_swag)?'checked="checked"':''}/>
@@ -87,7 +88,9 @@ for (var speakersIndex in speakers) {
             bt.text('delete');
             bt.attr('data-id', speakers[speakersIndex].id)
 
-            c.append(bt);
+            if (admin_status == "true") c.append(bt);
+
+            console.log("You've come to the right place");
 
             $('#schedule_table').append(c)
 

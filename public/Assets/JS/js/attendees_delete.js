@@ -1,6 +1,6 @@
 $(document).on('click', '.attendee_delete', function(e) {
 
-    e.preventDefault(); // avoid to execute the actual submit of the form.
+    // e.preventDefault(); // avoid to execute the actual submit of the form.
     
 	$.ajax({
 		url: '/attendee-delete',
@@ -10,4 +10,5 @@ $(document).on('click', '.attendee_delete', function(e) {
 		getAttendees();
 	});
 
+	$(this).parent().remove();
 });
