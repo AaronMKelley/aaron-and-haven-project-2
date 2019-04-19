@@ -23,6 +23,8 @@ var connection = mysql.createConnection({
 	database: "conventions_db"
 });
 
+admin_status = false;
+
 connection.connect(function () {
 	console.log(connection.threadId)
 })
@@ -98,6 +100,10 @@ app.post('/add_event', function (req, res) {
 	})
 });
 
+app.get('/schedule', function (req, res) {
+	res.render('pages/schedule', {admin_status: req.session.admin_status});
+})
+
 app.post('/speaker_sign_up', function (req, res) {
 	console.log(req.body)
 	/*
@@ -149,24 +155,24 @@ app.post('/speaker_sign_up', function (req, res) {
 // });
 
 app.post("/signup", function(req, res){
-	if(req.body.user_admin == "true") {
-		admin_status = 1;
-	} else {
-		admin_status = 0;
-	}
-
-	
-
 
 	bcrypt.genSalt(10, function(err, salt) {
 		
 		bcrypt.hash(req.body.user_password, salt, function(err, p_hash) {
+			console.log(req.body.user_admin);
+			if (req.body.user_admin == "true") {
+				admin_status = true;
+			} else {
+				admin_status = false;
+			}
 			var query = connection.query("INSERT INTO users (email, password_hash, admin) VALUES (?, ?, ?)", [req.body.user_email, p_hash, admin_status], function (error, results, fields) {
 				// console.log(query.sql)
 				if (error) throw error;
+				req.session.email = req.body.user_email;
+				req.session.admin_status = admin_status;
+				console.log(req.session.admin_status);
 				res.redirect("/add_event.html");
 			});			
-
 		});
 	});
 });
@@ -177,7 +183,6 @@ app.get("/signin", function(req, res) {
 		// res.json(results);
 	  if (error) throw error;
 
-	  console.log("hello");
 	  
 	  if (results.length == 0){
 	  	res.send('try again');
@@ -187,7 +192,8 @@ app.get("/signin", function(req, res) {
 	  	    if (result == true){
 
 	  	      req.session.user_id = results[0].id;
-	  	      req.session.email = results[0].email;
+						req.session.email = results[0].email;
+						req.session.admin_status = results[0].admin;
 
 	  	      res.send('you are logged in');
 
