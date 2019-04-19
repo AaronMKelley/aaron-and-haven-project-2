@@ -36,8 +36,8 @@ CREATE TABLE attendance(
    speaker_id INT NOT NULL,
    FOREIGN KEY (attendee_id) REFERENCES attendees(id),
    FOREIGN KEY (speaker_id) REFERENCES speakers(id),
-   attendee_name VARCHAR (255),
-   FOREIGN KEY (attendee_name) REFERENCES attendees(name)
+--    attendee_name VARCHAR (255),
+--    FOREIGN KEY (attendee_name) REFERENCES attendees(name)
 );
 
 

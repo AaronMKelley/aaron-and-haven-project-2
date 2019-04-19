@@ -53,31 +53,6 @@ for (var speakersIndex in speakers) {
             s_title.text(`${speakers[speakersIndex].title}`)
             c.append(s_title);
 
-
-            var s_code =$('<td>')
-            s_code.text(`${speakers[speakersIndex].code}`)
-            c.append(s_code)
-            // var a_swag =$('<td>')
-            // var dropdown1 =`<label>
-            // <input type="checkbox" data-name="swag" data-id="${attendees[attendeesIndex].id}"  ${ (attendees[attendeesIndex].picked_up_swag)?'checked="checked"':''}/>
-            // <span>Yes</span></label>`
-            // a_swag.text(`${attendees[attendeesIndex].picked_up_swag}`)
-            // a_swag.html(dropdown1)
-            // c.append(a_swag);
-
-            // var a_lunch =$('<td>')
-            // var dropdown2 =`<label>
-            // <input type="checkbox" data-name="lunch" data-id="${attendees[attendeesIndex].id}" ${(attendees[attendeesIndex].picked_up_lunch)?'checked=checked"':''}/>
-            // <span>Yes</span></label>`
-            // a_lunch.text(`${attendees[attendeesIndex].picked_up_lunch}`)
-            // a_lunch.html(dropdown2)
-            // c.append(a_lunch)
-        
-    
-            
-            // var a_ts =$('<td>')
-            // a_ts.text( `${attendees[attendeesIndex].ts}`)
-            // c.append(a_ts)
             
             console.log(c)
              
