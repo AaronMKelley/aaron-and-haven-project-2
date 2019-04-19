@@ -101,6 +101,7 @@ app.post('/add_event', function (req, res) {
 		console.log("in add event route")
 		if (error) res.send(error)
 		else res.render('pages/schedule')
+
 	})
 });
 
@@ -124,39 +125,41 @@ app.post('/speaker_sign_up', function (req, res) {
 				res.send(error)
 				console.log(error)
 			}
+
 			else res.render('pages/schedule')
+
 		})
-	//res.send('ok')
 });
 
-// app.delete('/delete_speaker',function (req, res){
-// 	('DELETE FROM speakers WHERE id = ?',
-// 	[req.body],
-// 	function(error, results, fields){
-// 		console.log(query.sql)
-// 		if (error){
-// 			res.send(error)
-// 		}
-// 		else res.send('worked')
+
+
+app.post('/check_in',function(req,res){
+	connection.query('SELECT id FROM attendees WHERE id=?',[req.body.attendee_id],function(error,results){
+		if (error) return res.send(error)
+	  if (results[0]){
+			connection.query('SELECT id FROM speakers WHERE id=?',[req.body.speaker_code],function(error,results){
+				if (error) return res.send(error)
+				if (results[0]){
+					connection.query('INSERT INTO attendance SET ?',[req.body],function(error,results){
+						if (error) return res.send(error)
+						console.log(error)
+						if (results[0]){
+						}
+					})
+				}
+			})
+		}else redirect('/schedule')
+	})
+})
+// 	connection.query('INSERT INTO attendance SET ?',[req,body],function(error, results, fields){
+// 		if (error) res.send(error)
+// 		else redirect('/schedule')
 // 	})
-// });
+// })
 
 
 
 
-
-
-
-
-// app.get('*', function(req, res){
-// 	res.redirect('/')
-// });
-
-
-// app.get("/", function(req, res) {
-// 	res.render();
-// 	// render landing page
-// });
 
 app.post("/signup", function(req, res){
 
