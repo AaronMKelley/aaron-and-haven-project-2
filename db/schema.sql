@@ -34,10 +34,7 @@ CREATE TABLE speakers(
 CREATE TABLE attendance(
    attendee_id INT NOT NULL,
    speaker_id INT NOT NULL,
+--    attendee_name VARCHAR (255),
    FOREIGN KEY (attendee_id) REFERENCES attendees(id),
    FOREIGN KEY (speaker_id) REFERENCES speakers(id),
---    attendee_name VARCHAR (255),
---    FOREIGN KEY (attendee_name) REFERENCES attendees(name)
-);
-
 

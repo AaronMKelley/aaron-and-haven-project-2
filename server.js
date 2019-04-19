@@ -33,7 +33,7 @@ app.get('/attendees', function (req, res) {
 	connection.query('SELECT * FROM attendees', function (error, results, fields) {
 		if (error) res.send(error)
 		else res.json(results)
-	})
+	});
 });
 
 app.get('/ejs', function (req, res) {
@@ -84,9 +84,12 @@ app.get('/speakers', function (req, res) {
 
 app.delete('/speaker-delete', function(req, res){
 	connection.query('DELETE FROM speakers WHERE id = (?)', [req.body.speakers_id],function (error, results, fields) {
+		if (error) {
+			res.json({error: error})
+			return
+		}
 	  
-	//   res.redirect('/');
-	res.redirect('/')
+	  res.json({message: 'ok'})
 	
 	});
 });
@@ -95,8 +98,10 @@ app.delete('/speaker-delete', function(req, res){
 
 app.post('/add_event', function (req, res) {
 	connection.query('INSERT INTO attendees SET ?', [req.body], function (error, results, fields) {
+		console.log("in add event route")
 		if (error) res.send(error)
-		else res.redirect('/schedule')
+		else res.render('pages/schedule')
+
 	})
 });
 
@@ -120,7 +125,9 @@ app.post('/speaker_sign_up', function (req, res) {
 				res.send(error)
 				console.log(error)
 			}
-			else res.redirect('/schedule')
+
+			else res.render('pages/schedule')
+
 		})
 });
 
@@ -159,7 +166,6 @@ app.post("/signup", function(req, res){
 	bcrypt.genSalt(10, function(err, salt) {
 		
 		bcrypt.hash(req.body.user_password, salt, function(err, p_hash) {
-			console.log(req.body.user_admin);
 			if (req.body.user_admin == "true") {
 				admin_status = true;
 			} else {
@@ -171,7 +177,7 @@ app.post("/signup", function(req, res){
 				req.session.email = req.body.user_email;
 				req.session.admin_status = admin_status;
 				console.log(req.session.admin_status);
-				res.redirect("/add_event.html");
+				res.render("pages/add_event");
 			});			
 		});
 	});
@@ -198,7 +204,7 @@ app.get("/signin", function(req, res) {
 	  	      res.send('you are logged in');
 
 	  	    }else{
-	  	      res.redirect('/add_event.html');
+	  	      res.render('pages/add_event');
 	  	    }
 	  	});
 	  }

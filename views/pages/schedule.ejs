@@ -39,7 +39,14 @@
   
   <div class="container">
     <div class="center-align">
-     <table id="schedule_table"> </table>  
+
+     <table id="schedule_table"> </table>
+  <!-- <div>
+    <form action="/delete_speaker?_method=DELETE" method="POST">
+      <button>Delete Speaker</button>
+    </form>
+  </div> -->
+
 </div>
 </div>
 
@@ -66,13 +73,15 @@ SELECT id FROM speaker WHERE code = ? -->
     </div>
   </div>
   </br>
-  <%if (admin_status) { %>
+  <% if (admin_status) { %>
         <div id="attendee-edit-link" class="container">
             <div class="center-align">
                 <a class="company_text_color" href="attendees_table.html">Admin? See and edit the attendee list.</a>
             </div>
         </div>
     <% } %>
+    <input type="hidden" id="admin_status" value=<%= admin_status%>>
+
 
 
   <footer class="company_color">
@@ -97,7 +106,8 @@ SELECT id FROM speaker WHERE code = ? -->
   <script type="text/javascript" src="Assets/JS/js/speaker_delete.js"></script>
 
   <script type="text/javascript">
-    getSchedule();
+    var a = $('#admin_status').val();
+    getSchedule(a);
   </script>
 </body>
 
