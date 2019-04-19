@@ -37,7 +37,7 @@ CREATE TABLE attendance(
    FOREIGN KEY (attendee_id) REFERENCES attendees(id),
    FOREIGN KEY (speaker_id) REFERENCES speakers(id),
    attendee_name VARCHAR (255),
-   FOREIGN Key (attendee_name) REFERENCES attendees(name)
+   FOREIGN KEY (attendee_name) REFERENCES attendees(name)
 );
 
 
