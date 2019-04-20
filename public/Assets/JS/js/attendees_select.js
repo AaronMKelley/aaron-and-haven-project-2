@@ -39,6 +39,8 @@ function getAttendees(){
             timestamp_head.text("Timestamp")
             headers.append(timestamp_head);
 
+            headers.attr('class','company_text_color')
+
             $('#attendees_table').append(headers);
 
     for (var attendeesIndex in attendees) {
@@ -62,7 +64,7 @@ function getAttendees(){
 
             var a_swag =$('<td>')
             var dropdown1 =`<label>
-            <input type="checkbox" data-name="swag" data-id="${attendees[attendeesIndex].id}"  ${ (attendees[attendeesIndex].picked_up_swag)?'checked="checked"':''}/>
+            <input class="company_text_color" type="checkbox" data-name="swag" data-id="${attendees[attendeesIndex].id}"  ${ (attendees[attendeesIndex].picked_up_swag)?'checked="checked"':''}/>
             <span>Yes</span></label>`
             a_swag.text(`${attendees[attendeesIndex].picked_up_swag}`)
             a_swag.html(dropdown1)
@@ -86,15 +88,15 @@ function getAttendees(){
         
 
             var bt = $('<button>');
-            bt.attr('class', 'attendee_delete')
+            bt.attr('class', 'attendee_delete waves-effect company_color btn')
 
             bt.text('delete');
             bt.attr('data-id', attendees[attendeesIndex].id)
-
+            // bt.attr('class', 'waves-effect company_color btn')
             c.append(bt);
 
            
-
+            c.attr('class','company_text_color')
            
           
             $('#attendees_table').append(c)

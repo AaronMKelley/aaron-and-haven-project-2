@@ -9,6 +9,15 @@ CREATE TABLE users (
     admin BOOLEAN DEFAULT false 
 );
 
+CREATE TABLE event (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR (255),
+    descript VARCHAR (255),
+    attendance INT NOT NULL,
+    event_date DATE NOT NULL
+);
+
+
 
 CREATE TABLE attendees (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -33,8 +42,8 @@ CREATE TABLE speakers(
 
 CREATE TABLE attendance(
    attendee_id INT NOT NULL,
-   speaker_id INT NOT NULL,
+   speaker_id INT NOT NULL
 --    attendee_name VARCHAR (255),
-   FOREIGN KEY (attendee_id) REFERENCES attendees(id),
-   FOREIGN KEY (speaker_id) REFERENCES speakers(id),
-
+--    FOREIGN KEY (attendee_id) REFERENCES attendees(id),
+--    FOREIGN KEY (speaker_id) REFERENCES speakers(id)
+   );

@@ -40,7 +40,7 @@
   <div class="container">
     <div class="center-align">
 
-     <table id="schedule_table"> </table>
+     <table id="schedule_table" > </table>
   <!-- <div>
     <form action="/delete_speaker?_method=DELETE" method="POST">
       <button>Delete Speaker</button>
@@ -49,17 +49,22 @@
 
 </div>
 </div>
-
+<br>
+<br>
   <div class="container">
 <div class="center-align">
+  <div class="row">
+    <div class="col l4"></div>
+    <div class="col l4">
     <form  action="/check_in" method="POST">
-      <input type="text" name="attendee_id" id="" placeholder="Attendee ID">
-      <input type="text" name="speaker_id" id="code" required placeholder="Enter Speaker Code">
-      <button class="company_text_color">Check In For This Speaker</button>
+      <input class="company_text_color" type="text" name="attendee_id"  placeholder="Attendee ID">
+      <input class="company_text_color" type="text" name="speaker_id"  required placeholder="Enter Speaker id">
+      <br>
+      <button class="waves-effect company_color btn">Check In For A Speaker</button>
   </form>
-  
 </div>
-
+</div>
+  </div>
   </div>
 
 <!-- SELECT id FROM attendees WHERE id=?

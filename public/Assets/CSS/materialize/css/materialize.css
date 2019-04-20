@@ -9097,6 +9097,7 @@ input[type=range]::-ms-thumb {
 
 #main_page{
   background-color:  palegreen;
+  margin-top:50px;
 }
 
 
@@ -9128,4 +9129,12 @@ table, th, td {
 
 body{
   font-family: 'Fjalla One', sans-serif !important ;
+}
+
+#alt_text_color{
+  color:palegreen;
+}
+
+.sign_in{
+  margin: auto;
 }
