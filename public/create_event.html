@@ -31,13 +31,13 @@
               <div class="row">
                 <div class="col l3"></div>
                 <div class="col l6">
-            <form action="/create_event method="POST">
-              <input class="company_text_color" type="text" name="name" placeholder="Title">
-              <input class="company_text_color" type="text" name="topic" placeholder="What is the topic of your presentation/talk?">
-              <input class="company_text_color" type="text" name="title" placeholder="What is the title of your presentation/talk?">
-              <input class="company_text_color" type="number" name="code" placeholder="Create a 5 digit event code">
+            <form action="/create_event" method="POST">
+              <input class="company_text_color" type="text" name="title" placeholder="Title">
+              <input class="company_text_color" type="text" name="descript" placeholder="Provide a Brief Description">
+              <input class="company_text_color" type="number" name="attendance" placeholder="What is your event capacity?">
+              <input class="company_text_color" type="date" name="event_date" placeholder="When is the event?">
           
-            <button class="waves-effect company_color btn">Sign Up</button>
+           <a href="events.html"> <button class="waves-effect company_color btn"> Add Event</button></a>
           </form>
         </div>
       </div>
@@ -60,3 +60,13 @@
                   <a class="company_text_color" href="/index.html">Home</a>
                 </div>
               </div>
+
+              <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="assets/JS/js/materialize.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  </script>
+</body>
+
+</html>

@@ -9138,3 +9138,7 @@ body{
 .sign_in{
   margin: auto;
 }
+
+#alt-page{
+  background-color:palegreen;
+}

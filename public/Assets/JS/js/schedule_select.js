@@ -1,7 +1,7 @@
 function getSchedule(admin_status) {
 
     // $('#speaker')
-    debugger;
+   
 
     $.ajax({
         url: '/speakers',
@@ -85,7 +85,7 @@ for (var speakersIndex in speakers) {
             console.log(c)
              
             var bt = $('<button>');
-            bt.attr('class', 'speaker_delete')
+            bt.attr('class', 'speaker_delete, waves-effect company_color btn')
 
             bt.text('delete');
             bt.attr('data-id', speakers[speakersIndex].id)

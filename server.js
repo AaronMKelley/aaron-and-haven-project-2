@@ -23,7 +23,7 @@ var connection = mysql.createConnection({
 	database: "conventions_db"
 });
 
-admin_status = false;
+admin_status = "false";
 
 connection.connect(function () {
 	console.log(connection.threadId)
@@ -42,6 +42,24 @@ app.get('/ejs', function (req, res) {
 		else res.render('pages/index', { attendees: results })
 	})
 });
+
+app.post('/create_event',function(req,res){
+	connection.query('INSERT INTO event SET ?',[req.body],function(error,results){
+		console.log('event added')
+		if (error) res.send(error)
+		else res.redirect('/schedule')
+	})
+})
+
+app.get('/events', function (req, res) {
+	connection.query('SELECT * FROM event', [req.body], function (error, results, fields) {
+		console.log("in add event route")
+		if (error) res.send(error);
+		else res.json(results)
+})
+});
+
+
 
 app.delete('/attendee-delete', function (req, res) {
 	connection.query('DELETE FROM attendees WHERE id = (?)', [req.body.attendees_id], function (error, results, fields) {
@@ -96,16 +114,7 @@ app.delete('/speaker-delete', function (req, res) {
 
 
 
-app.post('/add_event', function (req, res) {
-	connection.query('INSERT INTO attendees SET ?', [req.body], function (error, results, fields) {
-		console.log("in add event route")
 
-		if (error) res.send(error);
-		else res.redirect('/schedule');
-
-
-	})
-});
 
 app.get('/schedule', function (req, res) {
 
@@ -176,7 +185,7 @@ app.post("/signup", function (req, res) {
 			// } else {
 			// 	admin_status = false;
 			// }
-			var query = connection.query("INSERT INTO users (email, password_hash, admin) VALUES (?, ?, ?)", [req.body.user_email, p_hash, admin_status], function (error, results, fields) {
+			var query = connection.query("INSERT INTO users (email, password_hash, admin) VALUES (?, ?, ?)", [req.body.user_email, p_hash, req.body.user_admin], function (error, results, fields) {
 				// console.log(query.sql)
 				if (error) throw error;
 				req.session.email = req.body.user_email;
@@ -225,6 +234,8 @@ app.get("/logout", function (req, res) {
 	});
 });
 
+
+})
 app.listen(3000, function () {
 	console.log("listening on 3000");
-});
+})

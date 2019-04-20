@@ -5,7 +5,7 @@ function getAttendance(){
     
 
     $.ajax({
-        url: '/check-in',
+        url: '/attendance',
         method: 'GET'
     }).then(function (attendees) {
        
@@ -39,49 +39,19 @@ function getAttendance(){
             timestamp_head.text("Timestamp")
             headers.append(timestamp_head);
 
-            $('#attendees_table').append(headers);
+            $('#attendance_table').append(headers);
 
-    for (var attendeesIndex in attendees) {
+    for (var attendanceIndex in attendance) {
             var c = $('<tr>');
 
-            var a_id= $('<td>')
-            a_id.text(`${attendees[attendeesIndex].id}`)
-            c.append(a_id);
+            var attendee_id= $('<td>')
+            a_id.text(`${attendance[attendanceIndex].attendee_id}`)
+            c.append(attendee_id);
             
-            var a_name= $('<td>')
-            a_name.text(`${attendees[attendeesIndex].name}`)
-            c.append(a_name);
+            var speaker_id= $('<td>')
+            a_name.text(`${attendance[attedanceIndex].speaker_id}`)
+            c.append(speaker_id);
 
-            var a_email=$('<td>')
-            a_email.text(`${attendees[attendeesIndex].email}`)
-            c.append(a_email);
-
-            var a_company = $('<td>')
-            a_company.text(`${attendees[attendeesIndex].company}`)
-            c.append(a_company);
-
-            var a_swag =$('<td>')
-            var dropdown1 =`<label>
-            <input type="checkbox" data-name="swag" data-id="${attendees[attendeesIndex].id}"  ${ (attendees[attendeesIndex].picked_up_swag)?'checked="checked"':''}/>
-            <span>Yes</span></label>`
-            a_swag.text(`${attendees[attendeesIndex].picked_up_swag}`)
-            a_swag.html(dropdown1)
-            c.append(a_swag);
-
-            var a_lunch =$('<td>')
-            var dropdown2 =`<label>
-            <input type="checkbox" data-name="lunch" data-id="${attendees[attendeesIndex].id}" ${(attendees[attendeesIndex].picked_up_lunch)?'checked=checked"':''}/>
-            <span>Yes</span></label>`
-            a_lunch.text(`${attendees[attendeesIndex].picked_up_lunch}`)
-            a_lunch.html(dropdown2)
-            c.append(a_lunch)
-        
-    
-            
-            var a_ts =$('<td>')
-            a_ts.text( `${attendees[attendeesIndex].ts}`)
-            c.append(a_ts)
-            
             console.log(c)
         
 
@@ -97,7 +67,7 @@ function getAttendance(){
 
            
           
-            $('#attendees_table').append(c)
+            $('#attendance_table').append(c)
 
             // var swag = $('<button>');
             // swag.attr('class', 'attendee_swag')
