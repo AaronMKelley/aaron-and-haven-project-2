@@ -99,14 +99,20 @@ app.delete('/speaker-delete', function (req, res) {
 app.post('/add_event', function (req, res) {
 	connection.query('INSERT INTO attendees SET ?', [req.body], function (error, results, fields) {
 		console.log("in add event route")
-		if (error) res.send("Please fill out the entire forum")
-		else res.render('pages/schedule')
+
+		if (error) res.send(error);
+		else res.redirect('/schedule');
+
 
 	})
 });
 
 app.get('/schedule', function (req, res) {
-	res.render('pages/schedule', { admin_status: req.session.admin_status });
+
+	console.log("status");
+	console.log(req.session.admin_status);
+	res.render('pages/schedule', {admin_status: req.session.admin_status});
+
 })
 
 app.post('/speaker_sign_up', function (req, res) {
@@ -161,17 +167,20 @@ app.post("/signup", function (req, res) {
 
 	bcrypt.genSalt(10, function (err, salt) {
 
-		bcrypt.hash(req.body.user_password, salt, function (err, p_hash) {
-			if (req.body.user_admin == "true") {
-				admin_status = true;
-			} else {
-				admin_status = false;
-			}
+
+	bcrypt.genSalt(10, function(err, salt) {
+		
+		bcrypt.hash(req.body.user_password, salt, function(err, p_hash) {
+			// if (req.body.user_admin == "true") {
+			// 	admin_status = true;
+			// } else {
+			// 	admin_status = false;
+			// }
 			var query = connection.query("INSERT INTO users (email, password_hash, admin) VALUES (?, ?, ?)", [req.body.user_email, p_hash, admin_status], function (error, results, fields) {
 				// console.log(query.sql)
 				if (error) throw error;
 				req.session.email = req.body.user_email;
-				req.session.admin_status = admin_status;
+				req.session.admin_status = req.body.user_admin;
 				console.log(req.session.admin_status);
 				res.render("pages/add_event");
 			});
@@ -183,27 +192,30 @@ app.get("/signin", function (req, res) {
 	// res.send('hi')
 	connection.query('SELECT * FROM users WHERE email = ?', [req.query.user_email], function (error, results, fields) {
 		// res.json(results);
-		if (error) throw error;
 
+	  if (error) throw error;
 
-		if (results.length == 0) {
-			res.send('try again');
-		} else {
-			bcrypt.compare(req.body.user_password, results[0].password_hash, function (err, result) {
+	  
+	  if (results.length == 0){
+	  	res.send('try again');
+	  }else {
+	  	bcrypt.compare(req.body.user_password, results[0].password_hash, function(err, result) {
+	  	    
+	  	    if (result == true){
 
-				if (result == true) {
+						console.log(results[0].admin);
+	  	      req.session.user_id = results[0].id;
+						req.session.email = results[0].email;
+						req.session.admin_status = results[0].admin;
 
-					req.session.user_id = results[0].id;
-					req.session.email = results[0].email;
-					req.session.admin_status = results[0].admin;
+	  	      res.send('you are logged in');
 
-					res.send('you are logged in');
+	  	    }else{
+	  	      res.render('pages/add_event');
+	  	    }
+	  	});
+	  }
 
-				} else {
-					res.render('pages/add_event');
-				}
-			});
-		}
 	});
 })
 

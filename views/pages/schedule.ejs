@@ -78,7 +78,9 @@ SELECT id FROM speaker WHERE code = ? -->
     </div>
   </div>
   </br>
-  <% if (admin_status) { %>
+  <% console.log("admin-status:") %>
+  <% console.log(admin_status) %>
+  <% if (admin_status == "true") { %>
         <div id="attendee-edit-link" class="container">
             <div class="center-align">
                 <a class="company_text_color" href="attendees_table.html">Admin? See and edit the attendee list.</a>
