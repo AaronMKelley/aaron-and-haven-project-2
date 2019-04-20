@@ -1,61 +1,73 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="assets/CSS/materialize/css/materialize.css"  media="screen,projection"/>
-      <link  type="text/css" rel="stylesheet" href="Assets/CSS/style.css">
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+<html>
 
-    <body>
-        <nav class="company_color" role="navigation">
-            <div class="nav-wrapper container" id="header">
-              <img src="assets/Images/Screen Shot 2019-04-11 at 8.11.42 PM.png" alt="Logo" width="180px">
-              <ul class="right hide-on-med-and-down">
-                <li><a href="sign-up.html">Sign-Up</a></li>
-                <li><a href="login.html">Log-In</a></li>
-              </ul>
-        <ul id="nav-mobile" class="sidenav">
-                  <li><a href="">Sign-Up</a></li>
-                  <li><a href="login.html">Log-In</a></li>
-                </ul>
-                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-              </div>
-            </nav>
-            
-            <form action="/add_event" method="POST">
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="assets/CSS/materialize/css/materialize.css" media="screen,projection" />
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <nav class="company_color" role="navigation">
+    <div class="nav-wrapper container" id="header">
+      <img src="assets/Images/Screen Shot 2019-04-11 at 8.11.42 PM.png" alt="Logo" width="180px">
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sign-up.html" id="alt_text_color">Sign-Up</a></li>
+        <li><a href="login.html" id="alt_text_color">Log-In</a></li>
+      </ul>
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="">Sign-Up</a></li>
+        <li><a href="login.html">Log-In</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
 
 
-              <input type="text" name="name" placeholder="Name">
-              <input type="text" name="email" placeholder="Email">
-              <input type="text" name="company" placeholder="What company do you work for?">
-          
-            <button>I'm Going!</button>
-          </form>
-          
+  <div class="container">
+    <div class="center-align">
+
+      <form action="/add_event" method="POST">
 
 
+        <input class="company_text_color" type="text" name="name" placeholder="Name">
+        <input class="company_text_color" type="text" name="email" placeholder="Email">
+        <input class="company_text_color" type="text" name="company" placeholder="What company do you work for?">
 
-            <footer class="company_color">
-               
-                <div class="">
-               <p class="center-align white-text" > X-CON All Rights Reserved </p> 
-                </div>
-              </div>
-            </footer>
-      
+        <button class="waves-effect company_color btn">I'm Going!</button>
+      </form>
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <div class="center-align">
+      <a class="company_text_color" href="/schedule">Already registered? See Event Schedule</a>
+    </div>
+  </div>
+  <footer class="company_color">
+
+    <div class="">
+      <p class="center-align white-text"> X-CON All Rights Reserved </p>
+    </div>
+    </div>
+  </footer>
+
+  <div class="container">
+    <div class="center-align">
+      <a class="company_text_color" href="/index.html">Home</a>
+    </div>
+  </div>
 
 
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="assets/JS/js/materialize.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  </script>
+</body>
 
-      <!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="assets/JS/js/materialize.js"></script>
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-      <script type="text/javascript">
-      </script>
-    </body>
-  </html>
+</html>

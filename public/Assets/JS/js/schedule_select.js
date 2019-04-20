@@ -31,6 +31,8 @@ function getSchedule(admin_status) {
             picked_up_swag_head.text("Code")
             headers.append(picked_up_swag_head);
 
+            headers.attr('class','company_text_color')
+
 
             $('#schedule_table').append(headers);
 
@@ -89,6 +91,8 @@ for (var speakersIndex in speakers) {
             bt.attr('data-id', speakers[speakersIndex].id)
 
             if (admin_status == "true") c.append(bt);
+
+            c.attr('class','company_text_color')
 
             console.log("You've come to the right place");
 

@@ -6,13 +6,11 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="assets/CSS/materialize/css/materialize.css" media="screen,projection" />
-  <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
-
   <nav class="company_color" role="navigation">
     <div class="nav-wrapper container" id="header">
       <img src="assets/Images/Screen Shot 2019-04-11 at 8.11.42 PM.png" alt="Logo" width="180px">
@@ -28,56 +26,25 @@
     </div>
   </nav>
 
-  <!-- <div class="container"> -->
-  <div class="center-align">
-    <h2 class="company_text_color">Check Out the Conference Schedule and Check Into Sessions</h2>
-  </div>
-</div>
-
-
-  
-  <div class="container">
-    <div class="center-align">
-     <table id="schedule_table"> </table>
-  <div>
-</div>
-</div>
-
   <div class="container">
 <div class="center-align">
-    <form action="/checkin" method="GET">
-      <select id="speaker_id" required>
-          <option>choose a speaker</option>
-      </select>
-  
-      <input type="text" id="code" required placeholder="please put in your code">
-  
-      <button class="company_text_color">Check In For This Speaker</button>
-  </form>
-  
+<h2 class="company_text_color">Choose the Event You Want to Attend</h2>
 </div>
-
-  </div>
-
-
-  <div id="attendee-edit-link" class="container">
-    <div class= "center-align">
-      <a class="company_text_color" href="attendees_table.html">See and edit the attendee list.</a>
-
-<br></br>
   <div class="container">
     <div class="center-align">
-      <a class="company_text_color" href="speaker_sign_up.html">Add your own talk to the schedule.</a>
+<ul>
+    <li>  <a href="schedule" class="company_text_color">Comic Book Conference</a></li>
+     <li> <a href="schedule2"class="company_text_color">Fantasy Sports Conference</a></li>
+     <li><a href="schedule3"class="company_text_color">Wood Working Event</a></li> 
+</ul>
     </div>
   </div>
-  </br>
+<br>
   <div class="container">
     <div class="center-align">
-      <a class="company_text_color" href="attendees_table.html">Admin? See and edit the attendee list.</a>
-
+      <a class="company_text_color" href="/schedule">Already registered? See Event Schedule</a>
     </div>
   </div>
-
   <footer class="company_color">
 
     <div class="">
@@ -86,21 +53,18 @@
     </div>
   </footer>
 
-<div class="container">
-  <div class="center-align">
-    <a class="company_text_color" href="/index.html">Home</a>
-  </div>
-</div>
+  <div class="container">
+      <div class="center-align">
+        <a class="company_text_color" href="/index.html">Home</a>
+      </div>
+    </div>
+
 
   <!--JavaScript at end of body for optimized loading-->
-  <script type="text/javascript" src="Assets/JS/js/materialize.js"></script>
+  <script type="text/javascript" src="assets/JS/js/materialize.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="Assets/JS/js/schedule_select.js"></script>
-  <script type="text/javascript" src="Assets/JS/js/speaker_delete.js"></script>
-
   <script type="text/javascript">
-    getSchedule();
   </script>
 </body>
 

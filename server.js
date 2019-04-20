@@ -39,37 +39,37 @@ app.get('/attendees', function (req, res) {
 app.get('/ejs', function (req, res) {
 	connection.query('SELECT * FROM attendees', function (error, results, fields) {
 		if (error) res.send(error)
-		else res.render('pages/index', {attendees: results})
+		else res.render('pages/index', { attendees: results })
 	})
 });
 
-app.delete('/attendee-delete', function(req, res){
-	connection.query('DELETE FROM attendees WHERE id = (?)', [req.body.attendees_id],function (error, results, fields) {
-	  
-	//   res.redirect('/');
-	res.redirect('/')
-	
+app.delete('/attendee-delete', function (req, res) {
+	connection.query('DELETE FROM attendees WHERE id = (?)', [req.body.attendees_id], function (error, results, fields) {
+
+		//   res.redirect('/');
+		res.redirect('/')
+
 	});
 });
 
-app.put('/swag-update/', function(req, res){
+app.put('/swag-update/', function (req, res) {
 	console.log(req.body)
-	connection.query('UPDATE attendees SET picked_up_swag = ? WHERE id = ?', [(req.body.checked=='true'), req.body.userid],function (error, results, fields) {
-		
-	//   res.redirect('/');
-	res.json({message:'ok'})
-	
+	connection.query('UPDATE attendees SET picked_up_swag = ? WHERE id = ?', [(req.body.checked == 'true'), req.body.userid], function (error, results, fields) {
+
+		//   res.redirect('/');
+		res.json({ message: 'ok' })
+
 	});
 });
 
-app.put('/lunch-update', function(req, res){
-	connection.query('UPDATE attendees SET picked_up_lunch = ? WHERE id= ?', [req.body.checked=="true", req.body.userid],function(error,results,fields){
-		res.json({message: 'done'})
+app.put('/lunch-update', function (req, res) {
+	connection.query('UPDATE attendees SET picked_up_lunch = ? WHERE id= ?', [req.body.checked == "true", req.body.userid], function (error, results, fields) {
+		res.json({ message: 'done' })
 	})
 });
 
-app.get('/users', function (req, res){
-	connection.query('SELECT * FROM users', function (error,results,fields){
+app.get('/users', function (req, res) {
+	connection.query('SELECT * FROM users', function (error, results, fields) {
 		if (error) res.send(error)
 		else res.json(results)
 	})
@@ -82,15 +82,15 @@ app.get('/speakers', function (req, res) {
 	})
 });
 
-app.delete('/speaker-delete', function(req, res){
-	connection.query('DELETE FROM speakers WHERE id = (?)', [req.body.speakers_id],function (error, results, fields) {
+app.delete('/speaker-delete', function (req, res) {
+	connection.query('DELETE FROM speakers WHERE id = (?)', [req.body.speakers_id], function (error, results, fields) {
 		if (error) {
-			res.json({error: error})
+			res.json({ error: error })
 			return
 		}
-	  
-	  res.json({message: 'ok'})
-	
+
+		res.json({ message: 'ok' })
+
 	});
 });
 
@@ -99,30 +99,25 @@ app.delete('/speaker-delete', function(req, res){
 app.post('/add_event', function (req, res) {
 	connection.query('INSERT INTO attendees SET ?', [req.body], function (error, results, fields) {
 		console.log("in add event route")
-		if (error) res.send(error)
+		if (error) res.send("Please fill out the entire forum")
 		else res.render('pages/schedule')
 
 	})
 });
 
 app.get('/schedule', function (req, res) {
-	res.render('pages/schedule', {admin_status: req.session.admin_status});
+	res.render('pages/schedule', { admin_status: req.session.admin_status });
 })
 
 app.post('/speaker_sign_up', function (req, res) {
 	console.log(req.body)
-	/*
-	{ speaker_name: 'Aaron',
-  speaker_topic: 'Vampires',
-  speaker_title: 'Vampires After Dark',
-  speaker_code: '12345' }
-	*/
+
 	var query = connection.query('INSERT INTO speakers SET ?',
 		[req.body],
 		function (error, results, fields) {
 			console.log(query.sql)
 			if (error) {
-				res.send(error)
+				res.send("Please fill out the entire forum")
 				console.log(error)
 			}
 
@@ -133,39 +128,40 @@ app.post('/speaker_sign_up', function (req, res) {
 
 
 
-app.post('/check_in',function(req,res){
-	connection.query('SELECT id FROM attendees WHERE id=?',[req.body.attendee_id],function(error,results){
-		if (error) return res.send(error)
-	  if (results[0]){
-			connection.query('SELECT id FROM speakers WHERE id=?',[req.body.speaker_code],function(error,results){
-				if (error) return res.send(error)
-				if (results[0]){
-					connection.query('INSERT INTO attendance SET ?',[req.body],function(error,results){
-						if (error) return res.send(error)
-						console.log(error)
-						if (results[0]){
-						}
-					})
-				}
-			})
-		}else redirect('/schedule')
+app.post('/add_event', function (req, res) {
+	connection.query('INSERT INTO attendees SET ?', [req.body], function (error, results, fields) {
+		console.log("in add event route")
+		if (error) res.send("Please fill out the entire forum")
+		else res.render('pages/schedule')
 	})
-})
-// 	connection.query('INSERT INTO attendance SET ?',[req,body],function(error, results, fields){
-// 		if (error) res.send(error)
-// 		else redirect('/schedule')
-// 	})
-// })
+});
+
+app.post('/check_in', function (req, res) {
+	// connection.query('SELECT id FROM attendees WHERE id=?',[req.body.attendee_id],function(error,results){
+	// if (error) return res.send(error)
+	// if (results[0]){
+	// 	connection.query('SELECT id FROM speakers WHERE id=?',[req.body.speaker_code],function(error,results){
+	// 		if (error) return res.send(error)
+	// 		if (results[0]){
+	connection.query('INSERT INTO attendance SET ?', [req.body], function (error, results) {
+		console.log(query.sql)
+		if (error) {
+			res.send("ID does not exist")
+			console.log(error)
+
+		} else {
+			res.render('pages/schedule')
+		}
+	})
+});
 
 
 
+app.post("/signup", function (req, res) {
 
+	bcrypt.genSalt(10, function (err, salt) {
 
-app.post("/signup", function(req, res){
-
-	bcrypt.genSalt(10, function(err, salt) {
-		
-		bcrypt.hash(req.body.user_password, salt, function(err, p_hash) {
+		bcrypt.hash(req.body.user_password, salt, function (err, p_hash) {
 			if (req.body.user_admin == "true") {
 				admin_status = true;
 			} else {
@@ -178,41 +174,41 @@ app.post("/signup", function(req, res){
 				req.session.admin_status = admin_status;
 				console.log(req.session.admin_status);
 				res.render("pages/add_event");
-			});			
+			});
 		});
 	});
 });
 
-app.get("/signin", function(req, res) {
+app.get("/signin", function (req, res) {
 	// res.send('hi')
-	connection.query('SELECT * FROM users WHERE email = ?', [req.query.user_email],function (error, results, fields) {
+	connection.query('SELECT * FROM users WHERE email = ?', [req.query.user_email], function (error, results, fields) {
 		// res.json(results);
-	  if (error) throw error;
+		if (error) throw error;
 
-	  
-	  if (results.length == 0){
-	  	res.send('try again');
-	  }else {
-	  	bcrypt.compare(req.body.user_password, results[0].password_hash, function(err, result) {
-	  	    
-	  	    if (result == true){
 
-	  	      req.session.user_id = results[0].id;
-						req.session.email = results[0].email;
-						req.session.admin_status = results[0].admin;
+		if (results.length == 0) {
+			res.send('try again');
+		} else {
+			bcrypt.compare(req.body.user_password, results[0].password_hash, function (err, result) {
 
-	  	      res.send('you are logged in');
+				if (result == true) {
 
-	  	    }else{
-	  	      res.render('pages/add_event');
-	  	    }
-	  	});
-	  }
+					req.session.user_id = results[0].id;
+					req.session.email = results[0].email;
+					req.session.admin_status = results[0].admin;
+
+					res.send('you are logged in');
+
+				} else {
+					res.render('pages/add_event');
+				}
+			});
+		}
 	});
 })
 
-app.get("/logout", function(req, res) {
-	req.session.destroy(function(err) {
+app.get("/logout", function (req, res) {
+	req.session.destroy(function (err) {
 		res.send("You are logged out");
 	});
 });
