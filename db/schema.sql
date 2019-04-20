@@ -6,7 +6,7 @@ CREATE TABLE users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR (255) NOT NULL,
     password_hash VARCHAR (255) NOT NULL,
-    admin BOOLEAN DEFAULT false 
+    admin VARCHAR(255) 
 );
 
 CREATE TABLE event (
@@ -16,8 +16,6 @@ CREATE TABLE event (
     attendance INT NOT NULL,
     event_date DATE NOT NULL
 );
-
-
 
 CREATE TABLE attendees (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
