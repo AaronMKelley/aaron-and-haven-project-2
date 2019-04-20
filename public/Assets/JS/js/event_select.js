@@ -55,7 +55,7 @@ function getEvents(){
             c.append(e_attend);
 
             var e_date =$('<td>')
-            e_date.text( `${event[eventIndex].date}`)
+            e_date.text( `${event[eventIndex].event_date}`)
             c.append(e_date)
             
             console.log(c)
@@ -64,7 +64,7 @@ function getEvents(){
             var bt = $('<button>');
             bt.attr('class', 'attendee_delete waves-effect company_color btn')
 
-            bt.text('delete');
+            bt.text('RSVP');
             bt.attr('data-id', event[eventIndex].id)
             // bt.attr('class', 'waves-effect company_color btn')
             c.append(bt);

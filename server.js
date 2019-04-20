@@ -44,19 +44,21 @@ app.get('/ejs', function (req, res) {
 });
 
 app.post('/create_event',function(req,res){
-	connection.query('INSERT INTO event SET ?',[req.body],function(error,results){
+	var query = connection.query('INSERT INTO event SET ?',[req.body],function(error,results){
 		console.log('event added')
+		console.log(req.body)
+		console.log(query.sql)
 		if (error) res.send(error)
-		else res.redirect('/schedule')
+		else res.redirect('/index.html')
 	})
 })
 
 app.get('/events', function (req, res) {
-	connection.query('SELECT * FROM event', [req.body], function (error, results, fields) {
+	connection.query('SELECT id, title, descript, attendance, DATE_FORMAT(event_date, "%M %d, %Y") event_date FROM event', function (error, results, fields) {
 		console.log("in add event route")
 		if (error) res.send(error);
 		else res.json(results)
-})
+	})
 });
 
 
