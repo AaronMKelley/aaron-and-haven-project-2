@@ -6,6 +6,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="assets/CSS/materialize/css/materialize.css" media="screen,projection" />
+  <link rel="stylesheet" type="text/css" href="Assets/CSS/style.css">
   <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,11 +36,17 @@
 </div>
 
 
-  
+  <div id="schedule_table">
+    <form action="/delete_speaker?_method=DELETE" method="POST">
+
   <div class="container">
     <div class="center-align">
      <table id="schedule_table"> </table>
   <div>
+    <form action="/delete_speaker?_method=DELETE" method="POST">
+      <button>Delete Speaker</button>
+    </form>
+  </div>
 </div>
 </div>
 
