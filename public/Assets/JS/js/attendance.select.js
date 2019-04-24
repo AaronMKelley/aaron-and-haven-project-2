@@ -1,5 +1,5 @@
 function getAttendance(){
-    //  $('#attendees_table').empty();
+
 
     $('#attendance_table').empty();
     
@@ -7,61 +7,47 @@ function getAttendance(){
     $.ajax({
         url: '/attendance',
         method: 'GET'
-    }).then(function (attendees) {
+    }).then(function (attendance) {
        
             var headers = $('<tr>')
+            
+            var sp_id=$('<th>')
+            sp_id.text("Speaker ID")
+            headers.append(sp_id);
 
-            var sp_head= $('<th>')
-            sp_head.text("Speaker")
-            headers.append(sp_head);
+            var a_id= $('<th>')
+            a_id.text("Attendee ID")
+            headers.append(a_id);
 
-            var name_head=$('<th>')
-            name_head.text("Name")
-            headers.append(name_head);
-
-            var email_head =$('<th>')
-            email_head.text("Email")
-            headers.append(email_head);
-
-            var company_head=$('<th>')
-            company_head.text("Company")
-            headers.append(company_head);
-
-            var picked_up_swag_head=$('<th>')
-            picked_up_swag_head.text("Picked Up Swag")
-            headers.append(picked_up_swag_head);
-
-            var picked_up_lunch_head=$('<th>')
-            picked_up_lunch_head.text("Picked Up Lunch")
-            headers.append(picked_up_lunch_head);
-
-            var timestamp_head=$('<th>')
-            timestamp_head.text("Timestamp")
-            headers.append(timestamp_head);
-
+           
             $('#attendance_table').append(headers);
 
     for (var attendanceIndex in attendance) {
             var c = $('<tr>');
 
+            var speaker_id= $('<td>')
+            speaker_id.text(`${attendance[attendanceIndex].speaker_id}`)
+            c.append(speaker_id);
+
             var attendee_id= $('<td>')
-            a_id.text(`${attendance[attendanceIndex].attendee_id}`)
+            attendee_id.text(`${attendance[attendanceIndex].attendee_id}`)
             c.append(attendee_id);
             
-            var speaker_id= $('<td>')
-            a_name.text(`${attendance[attedanceIndex].speaker_id}`)
-            c.append(speaker_id);
+
+            var d =$('<tr>');
+
+          
 
             console.log(c)
         
 
-            var bt = $('<button>');
-            bt.attr('class', 'attendee_delete')
+            // var bt = $('<button>');
+            // bt.attr('class', 'attendee_delete')
 
-            bt.text('delete');
-            bt.attr('data-id', attendees[attendeesIndex].id)
+            // bt.text('delete');
+            // bt.attr('data-id', attendees[attendeesIndex].id)
 
-            c.append(bt);
+            // c.append(bt);
 
            
 

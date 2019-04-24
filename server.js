@@ -144,6 +144,13 @@ app.post('/speaker_sign_up', function (req, res) {
 });
 
 
+app.get('/attendance', function (req, res) {
+	connection.query('SELECT * FROM attendance', function (error, results, fields) {
+		if (error) res.send(error)
+		else res.json(results)
+	})
+});
+
 
 app.post('/add_event', function (req, res) {
 	connection.query('INSERT INTO attendees SET ?', [req.body], function (error, results, fields) {
@@ -154,20 +161,12 @@ app.post('/add_event', function (req, res) {
 });
 
 app.post('/check_in', function (req, res) {
-	// connection.query('SELECT id FROM attendees WHERE id=?',[req.body.attendee_id],function(error,results){
-	// if (error) return res.send(error)
-	// if (results[0]){
-	// 	connection.query('SELECT id FROM speakers WHERE id=?',[req.body.speaker_code],function(error,results){
-	// 		if (error) return res.send(error)
-	// 		if (results[0]){
-	connection.query('INSERT INTO attendance SET ?', [req.body], function (error, results) {
+	var query= connection.query('INSERT INTO attendance SET ?', [req.body], function (error, results, fields) {
 		console.log(query.sql)
-		if (error) {
-			res.send("ID does not exist")
+		if (error) {res.send("ID does not exist")
 			console.log(error)
-
 		} else {
-			res.render('pages/schedule')
+			res.redirect('attendance.html')
 		}
 	})
 });
@@ -182,11 +181,11 @@ app.post("/signup", function (req, res) {
 	bcrypt.genSalt(10, function(err, salt) {
 		
 		bcrypt.hash(req.body.user_password, salt, function(err, p_hash) {
-			// if (req.body.user_admin == "true") {
-			// 	admin_status = true;
-			// } else {
-			// 	admin_status = false;
-			// }
+			if (req.body.user_admin == "true") {
+				admin_status = true;
+			} else {
+				admin_status = false;
+			}
 			var query = connection.query("INSERT INTO users (email, password_hash, admin) VALUES (?, ?, ?)", [req.body.user_email, p_hash, req.body.user_admin], function (error, results, fields) {
 				// console.log(query.sql)
 				if (error) throw error;

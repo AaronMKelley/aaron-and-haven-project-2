@@ -39,8 +39,9 @@ CREATE TABLE speakers(
 );
 
 CREATE TABLE attendance(
-   attendee_id INT NOT NULL,
-   speaker_id INT NOT NULL
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+   speaker_id INT NOT NULL,
+    attendee_id INT NOT NULL
 --    attendee_name VARCHAR (255),
 --    FOREIGN KEY (attendee_id) REFERENCES attendees(id),
 --    FOREIGN KEY (speaker_id) REFERENCES speakers(id)
