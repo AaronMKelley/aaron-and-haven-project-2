@@ -145,7 +145,7 @@ app.post('/speaker_sign_up', function (req, res) {
 
 
 app.get('/attendance', function (req, res) {
-	connection.query('SELECT * FROM attendance', function (error, results, fields) {
+	connection.query('SELECT * FROM attendance ORDER BY speaker_id ASC;', function (error, results, fields) {
 		if (error) res.send(error)
 		else res.json(results)
 	})

@@ -24,9 +24,8 @@ CREATE TABLE attendees (
     company VARCHAR (255),
     picked_up_swag BOOLEAN DEFAULT false,
     picked_up_lunch BOOLEAN DEFAULT false,
-    /*user_id INT NOT NULL, */
     ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    /* FOREIGN KEY (user_id) REFERENCES users (id) */
+ 
 );
 
 
@@ -42,7 +41,4 @@ CREATE TABLE attendance(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
    speaker_id INT NOT NULL,
     attendee_id INT NOT NULL
---    attendee_name VARCHAR (255),
---    FOREIGN KEY (attendee_id) REFERENCES attendees(id),
---    FOREIGN KEY (speaker_id) REFERENCES speakers(id)
    );
