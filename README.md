@@ -24,7 +24,7 @@
  ##                                     Logging In
   If you already have an account, on the main page you will click "Sign-In" and see a similar page, but this one just asks for your email and password. 
   
-  ![alt_text] (https://raw.githubusercontent.com/htichy/aaron-and-haven-project-2/master/Images/Login.png)
+  ![alt_text](https://raw.githubusercontent.com/htichy/aaron-and-haven-project-2/master/Images/Login.png)
  
  #                                        User View 
  
