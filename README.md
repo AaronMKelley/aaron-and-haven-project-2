@@ -1,4 +1,4 @@
-![node](App Logo)
+![alt text](App Logo)
  #                                  Event Planner and Scheduler 
   This app is designed to allow ami users to add and manage events, their attendees and their speakers all in the same place. As a user one can view all upcoming events, sign up for the events of their choosing, see the speakers at the event and check in to specific sessions. As a admin one can add their own event to the app, add and delete attendees, change their status when it comes to lunch and swag, and add and remove speakers.  
  
@@ -18,7 +18,7 @@
   Currently our application only has the capability to allow you to sign up to one current conference that is built into the system. Due to this, the next page that you are prompted to is the sign-up page for the current event. Here you will enter your name, email, and the company that you work for. You are also be assigned here a attendee_id that will be your unique id for the event or conference that the admins can use to track where you have checked in to and if you have picked up your lunch or swag throughout the day.  
   If you have by chance already signed up for the event, you can bypass this page by click "Already registered? See Event Schedule". If not, fill out the form and click "I'm Going!"
  
- ![node](sign up for event)
+![alt text](https://raw.githubusercontent.com/htichy/aaron-and-haven-project-2/master/Images/Add%20Attendee%20.png)
  
  ##                                     Event Schedule 
   Next you will be brought to the event schedule where you can see all of the events that are scheduled for this particular conference. You'll see in this particular example there are currently 7 speakers signed up for the event and all have a ID, Name ,Topic and Title associated with them. 
