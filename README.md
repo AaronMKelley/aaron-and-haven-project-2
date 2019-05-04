@@ -6,7 +6,8 @@
  ![alt_text](https://raw.githubusercontent.com/htichy/aaron-and-haven-project-2/master/Images/Front-Page.png)
   
   ##                                 Run the App Through Node. 
-    To access the application you will first need to either git clone the repository or download the zip file. Once you have open the folder in your coding editor, in the terminal run "npm install" to download all of the required npm packages. Once you have done so you will run the command "nodemon server.js" (or "node sever.js") to run the apps server. The app will then begin running on localhost:3000. 
+   To access the application you will first need to either git clone the repository or download the zip file. Once you have open the folder in your coding editor, in the terminal run "npm install" to download all of the required npm packages. Once you have done so you will run the command "nodemon server.js" (or "node sever.js") to run the apps server. The app will then begin running on localhost:3000. 
+ ![alt_text](https://raw.githubusercontent.com/htichy/aaron-and-haven-project-2/master/Images/Nodemon%20.png)
     
    ##                             Creating an Account as a User 
    First we will run through the process of running through the process as a user. If you don't already have an account you can begin to sign up for one by either clicking "Create An Account" in the middle of the page or "Sign Up" at the top right. 
